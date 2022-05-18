@@ -1,8 +1,17 @@
 package br.ufs.dcomp.projetoia;
- 
-public class Main  {
+
+import aima.core.logic.fol.parsing.ast.Variable;
+import aima.core.search.csp.CSP;
+
+public class Main  extends CSP<Variable, VAL> {
+
+	public Main(String s) {
+		super(s);
+		// TODO Auto-generated constructor stub
+	}
 
 	public static void main(String[] args) {
-		 System.out.println("Oi");  ;
+		 System.out.println("Offi"); 
+		   
 	}
 }
