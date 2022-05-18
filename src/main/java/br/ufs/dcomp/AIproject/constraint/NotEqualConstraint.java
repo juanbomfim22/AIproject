@@ -1,11 +1,11 @@
-package br.ufs.dcomp.projectAI.constraint;
+package br.ufs.dcomp.AIproject.constraint;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import aima.core.search.csp.Assignment;
 import aima.core.search.csp.Constraint;
-import br.ufs.dcomp.projetoia.variables.Person;
+import br.ufs.dcomp.AIproject.variables.Person;
 
 public class NotEqualConstraint implements Constraint<Person, Integer>  {
 	   

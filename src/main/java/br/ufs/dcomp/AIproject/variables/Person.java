@@ -1,4 +1,4 @@
-package br.ufs.dcomp.projetoia.variables;
+package br.ufs.dcomp.AIproject.variables;
 
 import java.util.List;
 

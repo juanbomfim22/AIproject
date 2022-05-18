@@ -1,12 +1,12 @@
-package br.ufs.dcomp.projectAI.csp;
+package br.ufs.dcomp.AIproject.csp;
 
 import java.util.Arrays;
 import java.util.List;
 
 import aima.core.search.csp.CSP;
 import aima.core.search.csp.Domain;
-import br.ufs.dcomp.projectAI.constraint.NotEqualConstraint;
-import br.ufs.dcomp.projetoia.variables.Person;
+import br.ufs.dcomp.AIproject.constraint.NotEqualConstraint;
+import br.ufs.dcomp.AIproject.variables.Person;
 
 public class ScheduleCSP extends CSP<Person, Integer>{
 	

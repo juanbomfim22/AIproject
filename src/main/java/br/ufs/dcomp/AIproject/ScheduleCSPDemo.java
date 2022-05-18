@@ -1,4 +1,4 @@
-package br.ufs.dcomp.projectAI;
+package br.ufs.dcomp.AIproject;
 
 import java.util.Optional;
 
@@ -10,8 +10,8 @@ import aima.core.search.csp.CspListener;
 import aima.core.search.csp.CspSolver;
 import aima.core.search.csp.FlexibleBacktrackingSolver;
 import aima.core.search.csp.MinConflictsSolver;
-import br.ufs.dcomp.projectAI.csp.ScheduleCSP;
-import br.ufs.dcomp.projetoia.variables.Person;
+import br.ufs.dcomp.AIproject.csp.ScheduleCSP;
+import br.ufs.dcomp.AIproject.variables.Person;
 
 public class ScheduleCSPDemo {
 	public static void main(String[] args) {
