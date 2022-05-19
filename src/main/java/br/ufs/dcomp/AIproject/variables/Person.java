@@ -14,6 +14,14 @@ public class Person extends Variable {
 		this.hours = hours;
 		this.free = free; 
 	}
+    
+    public Integer getHours() {
+    	return this.hours;
+    }
+    
+    public List<Integer> getFree() {
+    	return this.free;
+    }
 
     
     
