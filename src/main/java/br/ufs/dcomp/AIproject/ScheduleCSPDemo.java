@@ -27,8 +27,8 @@ public class ScheduleCSPDemo {
 		
 		Optional<Assignment<TimeBox, StaffMember>> solution;
 		
-//		solver = new MinConflictsSolver<>(100000000);
-		solver = new FlexibleBacktrackingSolver<TimeBox, StaffMember>().setAll();
+		solver = new MinConflictsSolver<>(100000000);
+//		solver = new FlexibleBacktrackingSolver<TimeBox, StaffMember>().setAll();
 		
 		solver.addCspListener(stepCounter);
 		
