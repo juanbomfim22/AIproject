@@ -10,12 +10,13 @@ import br.ufs.dcomp.AIproject.csp.ScheduleCSP;
 public class StaffMember extends Variable {
 	private Integer hour; 
 	private Map<Integer, Boolean> free; 
+	private boolean vaccinated;
 	
 	public StaffMember(String name) {
 		super(name);
 	}
 	
-    public StaffMember(String name, Integer hour, List<Integer> free) {
+    public StaffMember(String name, Integer hour, List<Integer> free, boolean vaccinated) {
 		super(name); 
 		
 		Map<Integer, Boolean> map = new HashMap<>();
@@ -29,6 +30,7 @@ public class StaffMember extends Variable {
 		
 		this.hour = hour;
 		this.free = map; 
+		this.vaccinated = vaccinated;
 	}
 
 	public Integer getHour() {
@@ -37,5 +39,13 @@ public class StaffMember extends Variable {
  
 	public Map<Integer,Boolean> getFree() {
 		return free;
+	}
+
+	public boolean isVaccinated() {
+		return vaccinated;
+	}
+
+	public void setVaccinated(boolean vaccinated) {
+		this.vaccinated = vaccinated;
 	} 
 }

@@ -30,6 +30,7 @@ public class AllMustWorkRequiredHoursConstraint<VAR extends TimeBox, VAL extends
 	@Override
 	public boolean isSatisfiedWith(Assignment<VAR, VAL> assignment) {
 		HashMap<StaffMember, Integer> map = new HashMap<>();
+		
 		for(VAL member : getDomain()) {
 			map.put(member, 0);
 		}

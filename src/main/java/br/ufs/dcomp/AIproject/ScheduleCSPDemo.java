@@ -11,6 +11,7 @@ import aima.core.search.csp.MinConflictsSolver;
 import br.ufs.dcomp.AIproject.csp.ScheduleCSP;
 import br.ufs.dcomp.AIproject.variables.StaffMember;
 import br.ufs.dcomp.AIproject.variables.TimeBox;
+import br.ufs.dcomp.AIproject.variables.WorkingGroup;
 
 public class ScheduleCSPDemo {
 	public static String formatOutput(String x) {
@@ -19,13 +20,13 @@ public class ScheduleCSPDemo {
 	}
 	
 	public static void main(String[] args) {
-		CSP<TimeBox, StaffMember> csp = new ScheduleCSP();
+		CSP<TimeBox, WorkingGroup> csp = new ScheduleCSP();
 		
-		CspListener.StepCounter<TimeBox, StaffMember> stepCounter = new CspListener.StepCounter<>();
+		CspListener.StepCounter<TimeBox, WorkingGroup> stepCounter = new CspListener.StepCounter<>();
 		
-		CspSolver<TimeBox, StaffMember> solver;
+		CspSolver<TimeBox, WorkingGroup> solver;
 		
-		Optional<Assignment<TimeBox, StaffMember>> solution;
+		Optional<Assignment<TimeBox, WorkingGroup>> solution;
 		
 		solver = new MinConflictsSolver<>(100000000);
 //		solver = new FlexibleBacktrackingSolver<TimeBox, StaffMember>().setAll();
