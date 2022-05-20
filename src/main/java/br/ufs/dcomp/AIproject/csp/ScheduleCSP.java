@@ -59,9 +59,9 @@ public class ScheduleCSP extends CSP<TimeBox, StaffMember>{
 		// As duas constraints de baixo nao funcionam juntas... DEMORA MUITO
 		// DEMORA MUITO AS 3 juntas, mas se der sorte, retorna
 		// A ordem importa?
-		addConstraint(new AllStaffMembersWorkConstraint<TimeBox, StaffMember>(variables, domainWithoutEmpty));
+//		addConstraint(new AllStaffMembersWorkConstraint<TimeBox, StaffMember>(variables, domainWithoutEmpty));
 		addConstraint(new RequiredWorkHoursConstraint<TimeBox, StaffMember>(variables));
-		addConstraint(new FreeWorkHoursConstraint<TimeBox, StaffMember>(variables, domainWithoutEmpty));
+//		addConstraint(new FreeWorkHoursConstraint<TimeBox, StaffMember>(variables, domainWithoutEmpty));
 	}
     
 }

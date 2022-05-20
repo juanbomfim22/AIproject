@@ -30,15 +30,27 @@ public class AllStaffMembersWorkConstraint<VAR extends Variable, VAL> implements
 
 	@Override
 	public boolean isSatisfiedWith(Assignment<VAR, VAL> assignment) {
-		return getDomain()
-				.asList() 
+		
+		//		getScope().forEach(x -> 
+//			System.out.print(assignment.getValue(x))
+//		); 
+////		if()
+//		
+//		return getScope()
+//				.containsAll(
+//					getDomain().asList()
+//				);
+		for(VAR variable : getScope()) {
+			if(assignment.getValue(variable) == null) {
+				return true;
+			}
+		} 
+		return getScope().stream()
+				.map(x -> assignment.getValue(x))
+				.collect(Collectors.toList())
 				.containsAll(
-						getScope().stream()
-						.map(x -> assignment.getValue(x))
-						.filter(x -> { // remove o vazio "EMPTY" do dominio, para não interferir no containsAll
-							return !((StaffMember) x).getName().isEmpty(); 
-						})
-						.collect(Collectors.toList())
+					getDomain()
+					.asList() 						
 				);
 	}
 }

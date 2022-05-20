@@ -1,5 +1,6 @@
 package br.ufs.dcomp.AIproject.variables;
 
+import java.util.Comparator;
 import java.util.List;
 
 import aima.core.search.csp.Variable;
@@ -14,26 +15,18 @@ public class StaffMember extends Variable {
 	
     public StaffMember(String name, Integer hour, List<Integer> free) {
 		super(name); 
-		this.setHour(hour);
-		this.setFree(free); 
+		free.sort(Comparator.naturalOrder());
+		this.hour = hour;
+		this.free = free; 
 	}
 
 	public Integer getHour() {
 		return hour;
 	}
-
-	public void setHour(Integer hour) {
-		this.hour = hour;
-	}
-
+ 
 	public List<Integer> getFree() {
 		return free;
 	}
-
-	public void setFree(List<Integer> free) {
-		this.free = free;
-	}
  
-    
     
 }

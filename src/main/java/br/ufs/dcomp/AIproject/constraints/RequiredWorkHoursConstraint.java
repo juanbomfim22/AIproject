@@ -27,10 +27,14 @@ public class RequiredWorkHoursConstraint<VAR extends Variable, VAL> implements C
 		HashMap<StaffMember, Integer> memberAndHour = new HashMap<>();
 		for (VAR variable : getScope()) {
 			StaffMember member = (StaffMember) assignment.getValue(variable);
-			memberAndHour.merge(member, 1, Integer::sum);
+			if(member != null) {
+				memberAndHour.merge(member, 1, Integer::sum);
+			}
 		} 
 		for (StaffMember member : memberAndHour.keySet()) {
-			if(member.getName().isEmpty()) continue; 
+			if(member == null || member.getName().isEmpty()) {
+				return false;
+			} 
 		    if(!member.getHour().equals(memberAndHour.get(member))) {
 		    	return false;
 		    }
