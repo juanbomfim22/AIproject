@@ -9,7 +9,7 @@ import br.ufs.dcomp.AIproject.csp.ScheduleCSP;
 
 public class StaffMember extends Variable {
 	private Integer hour; 
-	private Map<Integer, Boolean> free;
+	private Map<Integer, Boolean> free; 
 	
 	public StaffMember(String name) {
 		super(name);
@@ -37,5 +37,5 @@ public class StaffMember extends Variable {
  
 	public Map<Integer,Boolean> getFree() {
 		return free;
-	}  
+	} 
 }
