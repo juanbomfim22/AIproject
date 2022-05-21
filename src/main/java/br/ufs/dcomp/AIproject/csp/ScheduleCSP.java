@@ -9,6 +9,9 @@ import org.paukov.combinatorics3.Generator;
 
 import aima.core.search.csp.CSP;
 import aima.core.search.csp.Domain;
+import br.ufs.dcomp.AIproject.constraints.AllMustWorkRequiredHoursConstraint;
+import br.ufs.dcomp.AIproject.constraints.DependentMembersConstraint;
+import br.ufs.dcomp.AIproject.constraints.FreeWorkHoursConstraint;
 import br.ufs.dcomp.AIproject.constraints.OfficeHourConstraint;
 import br.ufs.dcomp.AIproject.variables.StaffMember;
 import br.ufs.dcomp.AIproject.variables.TimeBox;
@@ -44,18 +47,18 @@ public class ScheduleCSP extends CSP<TimeBox, WorkingGroup> {
 			setDomain(variable, domain);
 		}
 
-//		for(TimeBox variable : getVariables()) {
-//			addConstraint(new FreeWorkHoursConstraint<TimeBox, StaffMember>(variable));	
-//		}
+		for(TimeBox variable : getVariables()) {
+			addConstraint(new FreeWorkHoursConstraint<TimeBox, WorkingGroup>(variable));	
+		}
 //		
 //		for (TimeBox variable : getVariables()) {
 //			addConstraint(new AllowVaccinatedConstraint<TimeBox, WorkingGroup>(variable));
 //		}
 //		addConstraint(new OfficeHourConstraint<TimeBox, WorkingGroup>(variables, startTime, endTime));
-		for(TimeBox variable : getVariables()) {
-			addConstraint(new OfficeHourConstraint<TimeBox, WorkingGroup>(variable, startTime, endTime));	
-		}
-//		addConstraint(new DependentMembersConstraint<TimeBox, StaffMember>(variables, ALICE, BOB));
-//		addConstraint(new AllMustWorkRequiredHoursConstraint<TimeBox, StaffMember>(variables, domain));
+//		for(TimeBox variable : getVariables()) {
+//			addConstraint(new OfficeHourConstraint<TimeBox, WorkingGroup>(variable, startTime, endTime));	
+//		}
+//		addConstraint(new DependentMembersConstraint<TimeBox, WorkingGroup>(variables, ALICE, BOB));
+//		addConstraint(new AllMustWorkRequiredHoursConstraint<TimeBox, WorkingGroup>(variables, domain));
 	}
 }

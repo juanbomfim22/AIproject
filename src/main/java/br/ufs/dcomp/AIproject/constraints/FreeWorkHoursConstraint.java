@@ -7,8 +7,9 @@ import aima.core.search.csp.Assignment;
 import aima.core.search.csp.Constraint;
 import br.ufs.dcomp.AIproject.variables.StaffMember;
 import br.ufs.dcomp.AIproject.variables.TimeBox;
+import br.ufs.dcomp.AIproject.variables.WorkingGroup;
 
-public class FreeWorkHoursConstraint<VAR extends TimeBox, VAL extends StaffMember> implements Constraint<VAR, VAL> {
+public class FreeWorkHoursConstraint<VAR extends TimeBox, VAL extends WorkingGroup> implements Constraint<VAR, VAL> {
 	private List<VAR> scope;
 
 	public FreeWorkHoursConstraint(VAR member) {
@@ -23,9 +24,13 @@ public class FreeWorkHoursConstraint<VAR extends TimeBox, VAL extends StaffMembe
 	@Override
 	public boolean isSatisfiedWith(Assignment<VAR, VAL> assignment) {
 		VAR time = getScope().get(0);
-		VAL member = assignment.getValue(time);
-		if (member == null) return true;
-		return member.getFree().get(time.getTime()).booleanValue();
+		VAL group = assignment.getValue(time);
+		if (group.getMembers().size() == 0) return true;
+		for(StaffMember member : group.getMembers()) {
+			if(!member.getFree().get(time.getTime()))
+					return false;
+		}
+		return true;
 	}
 
 }

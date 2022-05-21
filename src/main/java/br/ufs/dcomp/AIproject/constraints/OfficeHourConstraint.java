@@ -27,16 +27,13 @@ public class OfficeHourConstraint<VAR extends TimeBox, VAL extends WorkingGroup>
 	}
 
 	@Override
-	public boolean isSatisfiedWith(Assignment<VAR, VAL> assignment) {		
-		for(VAR timeBox : getScope()) { 
-			VAL member = assignment.getValue(timeBox);
-			if(member.getMembers().size() == 0) continue;
-			
-			if(!(startTime <= timeBox.getTime() && timeBox.getTime() <= endTime))
-				return false;
-		}
-		return true;
-	}
+	public boolean isSatisfiedWith(Assignment<VAR, VAL> assignment) {
+		VAR timeBox = getScope().get(0);
+		VAL group = assignment.getValue(timeBox);
+		if (group.getMembers().size() == 0) return true;
 
+		return (startTime <= timeBox.getTime() && timeBox.getTime() <= endTime);
+ 
+	}
 
 }
