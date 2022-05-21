@@ -1,6 +1,5 @@
 package br.ufs.dcomp.AIproject.csp;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,13 +9,17 @@ import org.paukov.combinatorics3.Generator;
 
 import aima.core.search.csp.CSP;
 import aima.core.search.csp.Domain;
-import br.ufs.dcomp.AIproject.constraints.AllowVaccinatedConstraint;
+import br.ufs.dcomp.AIproject.constraints.OfficeHourConstraint;
 import br.ufs.dcomp.AIproject.variables.StaffMember;
 import br.ufs.dcomp.AIproject.variables.TimeBox;
 import br.ufs.dcomp.AIproject.variables.WorkingGroup;
 
 public class ScheduleCSP extends CSP<TimeBox, WorkingGroup> {
 	public static final Integer scheduleSize = 24;
+	public static final Integer startTime = 8;
+	public static final Integer endTime = 17;
+	
+	
 	public static final StaffMember ALICE = new StaffMember("Alice", 2, Arrays.asList(4, 13, 19, 21, 22), true);
 	public static final StaffMember BOB = new StaffMember("Bob", 3, Arrays.asList(6, 9, 10, 14, 15, 21), true);
 	public static final StaffMember CHARLIE = new StaffMember("Charlie", 1, Arrays.asList(5, 8, 10, 13, 14, 21, 22, 23),
@@ -45,10 +48,13 @@ public class ScheduleCSP extends CSP<TimeBox, WorkingGroup> {
 //			addConstraint(new FreeWorkHoursConstraint<TimeBox, StaffMember>(variable));	
 //		}
 //		
-		for (TimeBox variable : getVariables()) {
-			addConstraint(new AllowVaccinatedConstraint<TimeBox, WorkingGroup>(variable));
+//		for (TimeBox variable : getVariables()) {
+//			addConstraint(new AllowVaccinatedConstraint<TimeBox, WorkingGroup>(variable));
+//		}
+//		addConstraint(new OfficeHourConstraint<TimeBox, WorkingGroup>(variables, startTime, endTime));
+		for(TimeBox variable : getVariables()) {
+			addConstraint(new OfficeHourConstraint<TimeBox, WorkingGroup>(variable, startTime, endTime));	
 		}
-//
 //		addConstraint(new DependentMembersConstraint<TimeBox, StaffMember>(variables, ALICE, BOB));
 //		addConstraint(new AllMustWorkRequiredHoursConstraint<TimeBox, StaffMember>(variables, domain));
 	}
