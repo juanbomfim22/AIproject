@@ -25,7 +25,7 @@ public class FreeWorkHoursConstraint<VAR extends TimeBox, VAL extends WorkingGro
 	public boolean isSatisfiedWith(Assignment<VAR, VAL> assignment) {
 		VAR time = getScope().get(0);
 		VAL group = assignment.getValue(time);
-		if (group.getMembers().size() == 0) return true;
+		if (group.getMembers().isEmpty()) return true;
 		for(StaffMember member : group.getMembers()) {
 			if(!member.getFree().get(time.getTime()))
 					return false;

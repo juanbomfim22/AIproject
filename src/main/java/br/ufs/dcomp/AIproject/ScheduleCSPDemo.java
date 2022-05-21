@@ -1,5 +1,6 @@
 package br.ufs.dcomp.AIproject;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import aima.core.search.csp.Assignment;
@@ -14,10 +15,6 @@ import br.ufs.dcomp.AIproject.variables.TimeBox;
 import br.ufs.dcomp.AIproject.variables.WorkingGroup;
 
 public class ScheduleCSPDemo {
-	public static String formatOutput(String x) {
-		String p =  x.replaceAll("Eve", "E").replaceAll("David", "D").replaceAll("Charlie", "C").replaceAll("Bob", "B").replaceAll("Alice","A");
-		return String.join("\n13",p.split(", 13"));
-	}
 	
 	public static void main(String[] args) {
 		CSP<TimeBox, WorkingGroup> csp = new ScheduleCSP();
@@ -41,9 +38,9 @@ public class ScheduleCSPDemo {
 		
 		solution = solver.solve(csp);
 		
+		 
 		
-		
-		solution.ifPresent(x -> System.out.println(formatOutput(String.valueOf(x))));
+		solution.ifPresent(x -> (new TableList()).printResults(String.valueOf(x)));
 
 //		solution.ifPresent(System.out::println);
 //		solution.ifPresent(System.out::println);

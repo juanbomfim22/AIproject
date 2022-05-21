@@ -11,6 +11,7 @@ public class StaffMember extends Variable {
 	private Integer hour; 
 	private Map<Integer, Boolean> free; 
 	private boolean vaccinated;
+	private Integer remainingWorkHours;
 	
 	public StaffMember(String name) {
 		super(name);
@@ -31,6 +32,8 @@ public class StaffMember extends Variable {
 		this.hour = hour;
 		this.free = map; 
 		this.vaccinated = vaccinated;
+		this.hour = hour;
+		this.remainingWorkHours = hour;
 	}
 
 	public Integer getHour() {
@@ -47,5 +50,13 @@ public class StaffMember extends Variable {
 
 	public void setVaccinated(boolean vaccinated) {
 		this.vaccinated = vaccinated;
+	}
+
+	public Integer getRemainingWorkHours() {
+		return remainingWorkHours;
+	}
+
+	public void setRemainingWorkHours(Integer remainingWorkHours) {
+		this.remainingWorkHours = remainingWorkHours;
 	} 
 }
