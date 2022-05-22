@@ -1,9 +1,14 @@
 package br.ufs.dcomp.AIproject.IO;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,91 +21,56 @@ public class InputCSP {
 	List<StaffMember> people = new ArrayList<>();
 
 	public InputCSP() {
-		InputStreamReader read = new InputStreamReader(System.in);
-		BufferedReader in = new BufferedReader(read);
+		Path currentWorkingDir = Paths.get("").toAbsolutePath();
+		System.out.println(currentWorkingDir.normalize().toString());
 
-		// Start time
-		Integer startTime = 0;
+		try (BufferedReader br = new BufferedReader(new FileReader("input.txt"))) {
+			String line;
+			Integer currentStep = 0;
+			while ((line = br.readLine()) != null) {
+				if (currentStep == 0) {
+					String[] hours = line.trim().split("\\s+");
+					this.startTime = Integer.parseInt(hours[0]);
+					this.endTime = Integer.parseInt(hours[1]);
+					currentStep++;
+					continue;
+				} else if (currentStep == 1) {
+					String[] data = line.trim().split("\\|");
+					if (data[0].equals("*")) {
+						currentStep++;
+					} else {
+						String memberName = data[0].trim();
+						Integer memberHours = Integer.parseInt(data[1].trim());
+						List<Integer> memberFreeHours = new ArrayList<>();
+						for (String number : data[2].trim().split("\\s+")) {
+							memberFreeHours.add(Integer.parseInt(number.trim()));
+						}
+						Boolean vaccinated = Boolean.parseBoolean(data[3].trim());
+						this.addStaffMember(memberName, memberHours, memberFreeHours, vaccinated);
+					}
 
-		while (true) {
-			System.out.println("Enter start time (0-24): ");
-			try {
-				startTime = Integer.parseInt(in.readLine());
-			} catch (NumberFormatException e) {
-				System.out.println("Type a valid integer.");
-				continue;
-			} catch (IOException e) {
-				System.out.println("IO ERROR");
-				continue;
+				} else if (currentStep == 2) {
+					String[] data = line.trim().split("\\s+");
+					this.addDependecies(data[0], data[1]);
+
+				}
 			}
-			if (startTime < 0 || startTime > 24) {
-				System.out.println("Enter a valid start time.");
-			} else {
-				this.startTime = startTime;
-				break;
-			}
+		} catch (FileNotFoundException e1) {
+			System.out.println("File not found.");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		this.printSchema();
 
-		// End time
-		Integer endTime = 0;
 
-		while (true) {
-			System.out.println("Enter the end time, it needs to be after the start time (" + startTime + "-24): ");
-			try {
-				endTime = Integer.parseInt(in.readLine());
+	}
 
-			} catch (NumberFormatException e) {
-				System.out.println("Type a valid integer.");
-				continue;
-
-			} catch (IOException e) {
-				System.out.println("IO ERROR");
-				continue;
-			}
-			if (endTime < 0 || endTime > 24 || endTime <= startTime) {
-				System.out.println("Enter a valid start time.");
-			} else {
-				this.endTime = endTime;
-				break;
-			}
-		}
-
-		// Number of people
-		Integer staffSize = 0;
-
-		while (true) {
-			System.out.println("Enter staff size, it must be have at least one person: ");
-			try {
-				staffSize = Integer.parseInt(in.readLine());
-
-			} catch (NumberFormatException e) {
-				System.out.println("Type a valid integer.");
-				continue;
-
-			} catch (IOException e) {
-				System.out.println("IO ERROR");
-				continue;
-
-			}
-			if (staffSize < 1) {
-				System.out.println("Enter a valid number.");
-			} else {
-				break;
-			}
-		}
-		for (int i = 0; i < staffSize; i++) {
-			addStaffMember(i + 1);
-		}
-		System.out.println("Members can work from " + startTime + " to " + endTime);
-		for (StaffMember person : people) {
-			System.out.print("Number: " + (people.indexOf(person) + 1) + " | ");
+	public void printSchema() {
+		System.out.println("Members can work from " + this.startTime + " to " + this.endTime);
+		for (StaffMember person : this.people) {
 			System.out.print("Name: " + person.getName() + " | ");
 			System.out.print("Workload: " + person.getHour() + " | ");
-			if (person.isVaccinated()) {
-				System.out.print("Vaccinated: YES | ");
-			} else {
-				System.out.print("Vaccinated: NO | ");
-			}
 			System.out.print("Free hours: ");
 			Map<Integer, Boolean> free = person.getFree();
 			for (int i = 0; i < 24; i++) {
@@ -110,143 +80,45 @@ public class InputCSP {
 					}
 				}
 			}
+			System.out.print("| ");
+			if (person.isVaccinated()) {
+				System.out.print("Vaccinated: YES");
+			} else {
+				System.out.print("Vaccinated: NO");
+			}
 			System.out.println();
 		}
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-		Boolean add = false;
-		System.out.println("Add priorities (Y - Yes | N - No)?");
-		while (true) {
-			String resp = "";
-			resp = sc.nextLine();
-			if (resp.charAt(0) == 'Y') {
-				add = true;
-				break;
-			} else if (resp.charAt(0) == 'N') {
-				add = false;
-				break;
-			} else {
-				System.out.println("Type a valid response.");
+		for (StaffMember p1 : this.people) {
+			for(StaffMember p2 : p1.getDependencies()) {
+				System.out.println( p1.getName() + " depends on " + p2.getName() + " to work.");
 			}
 		}
-		if(add) {
-			this.addDependecies();
-		}
+		
 	}
 
-	private void addStaffMember(Integer staffNumber) {
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-
-		// Member name
-		String staffName = "";
-		while (true) {
-			System.out.println("Enter staff name (" + staffNumber + "):");
-			staffName = sc.nextLine();
-			if (staffName.length() < 1) {
-				System.out.println("Enter a valid name.");
-			} else {
-				break;
-			}
-		}
-
-		// Hours of Work
-		Integer hours = 0;
-		while (true) {
-			System.out.println("Enter staff work load:");
-			try {
-				hours = Integer.parseInt(sc.nextLine());
-
-			} catch (NumberFormatException e) {
-				System.out.println("Type a valid integer.");
-				continue;
-			}
-			if (hours < 0) {
-				System.out.println("Enter a valid number of hours.");
-			} else {
-				break;
-			}
-		}
-
-		// Free hours
-		List<Integer> free = new ArrayList<>();
-		System.out.println("Enter the hours the member can work (-1 to end):");
-		while (true) {
-			Integer newHour = 0;
-			try {
-				newHour = Integer.parseInt(sc.nextLine());
-
-			} catch (NumberFormatException e) {
-				System.out.println("Type a valid integer.");
-				continue;
-			}
-			if (newHour == -1) {
-				break;
-			} else if (newHour < 0 || newHour > 24) {
-				System.out.println("Enter a valid hour.");
-
-			} else {
-				free.add(newHour);
-			}
-		}
-		// Vaccinated
-		Boolean vaccinated = false;
-		System.out.println("Enter if this member is vaccinated (Y - Yes | N - No):");
-		while (true) {
-			String resp = "";
-			resp = sc.nextLine();
-			if (resp.charAt(0) == 'Y') {
-				vaccinated = true;
-				break;
-			} else if (resp.charAt(0) == 'N') {
-				vaccinated = false;
-				break;
-			} else {
-				System.out.println("Type a valid response.");
-			}
-		}
+	private void addStaffMember(String staffName, Integer hours, List<Integer> free, Boolean vaccinated) {
 		StaffMember newMember = new StaffMember(staffName, hours, free, vaccinated);
 		List<StaffMember> people = this.people;
 		people.add(newMember);
 		this.people = people;
 	}
 
-	public void addDependecies() {
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-		List<StaffMember> people = this.getPeople();
-
-		System.out.println("Enter who has to wait for whom, use the 'Number' value (-1 to skip/end):");
-		while (true) {
-			Integer person = 0, dependent = 0;
-			try {
-				dependent = Integer.parseInt(sc.nextLine());
-				if (dependent == -1) {
-					break;
-				}
-				person = Integer.parseInt(sc.nextLine());
-				if (person == -1) {
-					break;
-				}
-
-			} catch (NumberFormatException e) {
-				System.out.println("Type a valid integers.");
-				continue;
-			}
-
-			if (person >= 1 && person <= people.size() && dependent >= 1 && dependent <= people.size()) {
-				if (person != dependent) {
-					System.out.println(people.get(dependent - 1).getName() + " depends on "
-							+ people.get(person - 1).getName() + " work.");
-					people.get(dependent - 1).addDependency(people.get(person - 1));
-				} else {
-					System.out.println("Number must be different.");
-					continue;
-				}
-			} else {
-				System.out.println("Number must be between 1 and " + people.size());
+	public void addDependecies(String name1, String name2) {
+		Integer index1 = -1, index2 = -1;
+		for (StaffMember p1 : this.people) {
+			if (p1.getName().equals(name1)) {
+				index1 = this.people.indexOf(p1);
 			}
 		}
+		for (StaffMember p2 : this.people) {
+			if (p2.getName().equals(name2)) {
+				index2 = this.people.indexOf(p2);
+			}
+		}
+		if (index1 != index2 && index1 != -1 && index2 != -1) {
+			people.get(index1).addDependency(people.get(index2));
+		}
+
 	}
 
 	public Integer getStartTime() {
