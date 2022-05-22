@@ -7,9 +7,10 @@
 
 ![image](https://user-images.githubusercontent.com/55420785/169701131-6bed8fca-784d-4630-b977-21820c46f414.png)
 
+### Manual de funcionamento:
 
 > Implementação do Problema de Agendamento no Escritório de Trabalho que utiliza a biblioteca [aima-java](https://github.com/aimacode/aima-java) para resolver o Problema de Satisfação de Restrições (PSR)
-### Ajustes e melhorias
+## Ajustes e melhorias
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
@@ -22,46 +23,45 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
-<!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-* Você instalou a versão mais recente de `<linguagem / dependência / requeridos>`
-* Você tem uma máquina `<Windows / Linux / Mac>`. Indique qual sistema operacional é compatível / não compatível.
-* Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
+* Você instalou a versão mais recente do Java SDK;
+* Você tem baixou o Eclipse IDE;
+* Você leu todo esse manual.
 
-## 🚀 Instalando <nome_do_projeto>
+## 🚀 Instalando AIproject
 
 Para instalar o <nome_do_projeto>, siga estas etapas:
+Todos SOs:
+Basta abrir o Eclipse IDE e fazer o clone desse repositório, outra opção é abrir o projeto já clonado.
+OBS: todas dependencias já estão instaladas dentro do repositório (maven).
 
-Linux e macOS:
-```
-<comando_de_instalação>
-```
+## ☕ Usando AIproject
 
-Windows:
-```
-<comando_de_instalação>
-```
+Para usar AIproject, siga estas etapas:
 
-## ☕ Usando <nome_do_projeto>
+Entre na pasta do projeto e abra o .txt
+Como esse .txt será a entrada, deve seguir o seguinte padrão:
 
-Para usar <nome_do_projeto>, siga estas etapas:
+<hora de início do experiente> < hora de fim do expediente>
+<nome do funcionário 1> | <horas requeridas do funcionário> | <horários que o funcionário está livre> | <está vacinado ou não>
+.
+.
+.
+<nome do funcionário n> | <horas requeridas do funcionário> | <horários que o funcionário está livre> | <está vacinado ou não>
+*
+<nome do funcionário que precisa que outro termine seu turno> <nome do funcionário a ser esperado que o turno acabe>
 
-```
-<exemplo_de_uso>
-```
+Exemplo:
 
-Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!
+1 10
+Alice | 2 | 1 2 3 4 5 | true
+Bob | 2 | 1 2 3 4 5 | true
+Charlie | 2 | 1 2 3 4 5 | true
+*
+Alice Bob
 
-## 📫 Contribuindo para <nome_do_projeto>
-<!---Se o seu README for longo ou se você tiver algum processo ou etapas específicas que deseja que os contribuidores sigam, considere a criação de um arquivo CONTRIBUTING.md separado--->
-Para contribuir com <nome_do_projeto>, siga estas etapas:
-
-1. Bifurque este repositório.
-2. Crie um branch: `git checkout -b <nome_branch>`.
-3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
-4. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
-5. Crie a solicitação de pull.
-
-Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+//
+Após isso basta alterar no arquivo <x> quais restrições você quer que sejam aplicadas no PSR 
+E por fim clicar em Run, o resultado será apresentado no terminal.
 
 ## 🤝 Colaboradores
 
