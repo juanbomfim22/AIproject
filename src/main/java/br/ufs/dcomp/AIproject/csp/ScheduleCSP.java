@@ -23,8 +23,8 @@ import br.ufs.dcomp.AIproject.variables.WorkingGroup;
 
 public class ScheduleCSP extends CSP<TimeBox, WorkingGroup> {
 	public static final Integer scheduleSize = 24;
-	public static final Integer startTime =1;
-	public static final Integer endTime = 24; 
+	public static final Integer startTime =6;
+	public static final Integer endTime = 22; 
 	
 	public static final StaffMember ALICE = new StaffMember("Alice", 2, Arrays.asList(4, 13, 19, 21, 22), true);
 	public static final StaffMember BOB = new StaffMember("Bob", 3, Arrays.asList(6, 9, 10, 14, 15, 21), true);
@@ -60,7 +60,7 @@ public class ScheduleCSP extends CSP<TimeBox, WorkingGroup> {
 		}
 		
 		addConstraint(new AllMembersWorkConstraint<TimeBox, WorkingGroup>(variables, people));
-		addConstraint(new DependentMembersConstraint<TimeBox, WorkingGroup>(variables, ALICE, BOB));	
+		addConstraint(new DependentMembersConstraint<TimeBox, WorkingGroup>(variables, ALICE, BOB));
 		addConstraint(new WorkLoadConstraint<TimeBox, WorkingGroup>(variables, people));
 	}
 }

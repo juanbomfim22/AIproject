@@ -16,6 +16,8 @@ public class DependentMembersConstraint<VAR extends TimeBox, VAL extends Working
 	private List<StaffMember> members;
 	private StaffMember member1;
 	private StaffMember member2;
+	public StaffMember lastDependentMemberFound;
+	public StaffMember actualDependentMemberFound;
 	
 	public DependentMembersConstraint(List<VAR> scope, StaffMember member1, StaffMember member2) {	
 		this.scope = scope; 
@@ -30,21 +32,45 @@ public class DependentMembersConstraint<VAR extends TimeBox, VAL extends Working
 
 	@Override
 	public boolean isSatisfiedWith(Assignment<VAR, VAL> assignment) {
-		Integer member2WorkedHours = 0;
+		Integer flag = 0;
+		
+		for(VAR timeBox: getScope()) {
+			VAL group = assignment.getValue(timeBox);
+			if (group.getMembers().contains(member1) || group.getMembers().contains(member2)) {
+				if(group.getMembers().contains(member1)) {
+					return false;
+				}else {
+					lastDependentMemberFound = actualDependentMemberFound = member2;
+					break;
+				}
+			}
+		}
 
 		for(VAR timeBox : getScope()) { 
 			VAL group = assignment.getValue(timeBox);
-			boolean dependentOnGroup = group.getMembers().contains(member1);
-			boolean normalOnGroup = group.getMembers().contains(member2);
 
 			if(group.getMembers().isEmpty()) continue; 
 			
-			if(!dependentOnGroup && normalOnGroup) {
-				member2WorkedHours++;
-			}  
+			if (group.getMembers().contains(member1) && group.getMembers().contains(member2)) {
+				return false;
+			}
 			
-			if(dependentOnGroup && member2WorkedHours != member2.getHour())
-					return false;
+			if (group.getMembers().contains(member1) || group.getMembers().contains(member2)) {
+				if(group.getMembers().contains(member1)) {
+					actualDependentMemberFound = member1;
+				}else {
+					actualDependentMemberFound = member2;
+				}
+			}
+			
+			if(lastDependentMemberFound != actualDependentMemberFound) {
+				flag = 1;
+			}
+			
+			if(lastDependentMemberFound == actualDependentMemberFound && flag == 1) {
+				return false;
+			}
+			
 		}
 		return true;
 	}      
