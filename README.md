@@ -8,16 +8,7 @@
 ![image](https://user-images.githubusercontent.com/55420785/169701131-6bed8fca-784d-4630-b977-21820c46f414.png)
 
 > Implementação do Problema de Agendamento no Escritório de Trabalho que utiliza a biblioteca [aima-java](https://github.com/aimacode/aima-java) para resolver o Problema de Satisfação de Restrições (PSR)
-## Ajustes e melhorias
-
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
-
-- [x] Tarefa 1
-- [x] Tarefa 2
-- [x] Tarefa 3
-- [ ] Tarefa 4
-- [ ] Tarefa 5
-
+> 
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:  
@@ -27,7 +18,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 ## 🚀 Instalando AIproject
 
-Para instalar o <nome_do_projeto>, siga estas etapas:  
+Para instalar o Aiproject, siga estas etapas:  
 Todos SOs:  
 Basta abrir o Eclipse IDE e fazer o clone desse repositório, outra opção é abrir o projeto já clonado.  
 OBS: todas dependencias já estão instaladas dentro do repositório (maven).  
