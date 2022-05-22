@@ -20,46 +20,45 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 ## 💻 Pré-requisitos
 
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
-* Você instalou a versão mais recente do Java SDK;
-* Você tem baixou o Eclipse IDE;
-* Você leu todo esse manual.
+Antes de começar, verifique se você atendeu aos seguintes requisitos:  
+* Você instalou a versão mais recente do Java SDK;  
+* Você tem baixou o Eclipse IDE;  
+* Você leu todo esse manual.  
 
 ## 🚀 Instalando AIproject
 
-Para instalar o <nome_do_projeto>, siga estas etapas:
-Todos SOs:
-Basta abrir o Eclipse IDE e fazer o clone desse repositório, outra opção é abrir o projeto já clonado.
-OBS: todas dependencias já estão instaladas dentro do repositório (maven).
+Para instalar o <nome_do_projeto>, siga estas etapas:  
+Todos SOs:  
+Basta abrir o Eclipse IDE e fazer o clone desse repositório, outra opção é abrir o projeto já clonado.  
+OBS: todas dependencias já estão instaladas dentro do repositório (maven).  
 
 ## ☕ Usando AIproject
 
-Para usar AIproject, siga estas etapas:
+Para usar AIproject, siga estas etapas:  
+  
+Entre na pasta do projeto e abra o .txt  
+Como esse .txt será a entrada, deve seguir o seguinte padrão:  
 
-Entre na pasta do projeto e abra o .txt
-Como esse .txt será a entrada, deve seguir o seguinte padrão:
-
-<hora de início do experiente> < hora de fim do expediente>
-<nome do funcionário 1> | <horas requeridas do funcionário> | <horários que o funcionário está livre> | <está vacinado ou não>
-.
-.
-.
-<nome do funcionário n> | <horas requeridas do funcionário> | <horários que o funcionário está livre> | <está vacinado ou não>
-*
-<nome do funcionário que precisa que outro termine seu turno> <nome do funcionário a ser esperado que o turno acabe>
-
-Exemplo:
-
- 1 10
- Alice | 2 | 1 2 3 4 5 | true
- Bob | 2 | 1 2 3 4 5 | true
- Charlie | 2 | 1 2 3 4 5 | true
- *
- Alice Bob
-
-//
-Após isso basta alterar no arquivo <x> quais restrições você quer que sejam aplicadas no PSR 
-E por fim clicar em Run, o resultado será apresentado no terminal.
+<hora de início do experiente> < hora de fim do expediente>  
+<nome do funcionário 1> | <horas requeridas do funcionário> | <horários que o funcionário está livre> | <está vacinado ou não>  
+.  
+.  
+.  
+<nome do funcionário n> | <horas requeridas do funcionário> | <horários que o funcionário está livre> | <está vacinado ou não>  
+*  
+<nome do funcionário que precisa que outro termine seu turno> <nome do funcionário a ser esperado que o turno acabe>  
+  
+Exemplo:  
+  
+ 1 10  
+ Alice | 2 | 1 2 3 4 5 | true    
+ Bob | 2 | 1 2 3 4 5 | true    
+ Charlie | 2 | 1 2 3 4 5 | true    
+ *  
+ Alice Bob  
+ 
+Após isso basta alterar no arquivo <x> quais restrições você quer que sejam aplicadas no PSR  
+E por fim clicar em Run, o resultado será apresentado no terminal.  
 
 ## 🤝 Colaboradores
 
