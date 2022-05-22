@@ -6,6 +6,7 @@ import aima.core.search.csp.Assignment;
 import aima.core.search.csp.CSP;
 import aima.core.search.csp.CspListener;
 import aima.core.search.csp.CspSolver;
+import aima.core.search.csp.FlexibleBacktrackingSolver;
 import aima.core.search.csp.MinConflictsSolver;
 import br.ufs.dcomp.AIproject.csp.ScheduleCSP;
 import br.ufs.dcomp.AIproject.variables.TimeBox;
@@ -22,8 +23,8 @@ public class ScheduleCSPDemo {
 		
 		Optional<Assignment<TimeBox, WorkingGroup>> solution;
 		
-		solver = new MinConflictsSolver<>(100000000);
-//		solver = new FlexibleBacktrackingSolver<TimeBox, StaffMember>().setAll();
+//		solver = new MinConflictsSolver<>(100000000);
+		solver = new FlexibleBacktrackingSolver<TimeBox, WorkingGroup>().setAll();
 		
 		solver.addCspListener(stepCounter);
 		

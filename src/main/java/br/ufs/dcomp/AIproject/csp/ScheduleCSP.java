@@ -59,5 +59,13 @@ public class ScheduleCSP extends CSP<TimeBox, WorkingGroup> {
 		
 		addConstraint(new DependentMembersConstraint<TimeBox, WorkingGroup>(variables, ALICE, BOB));	
 		addConstraint(new WorkLoadConstraint<TimeBox, WorkingGroup>(variables, people));
+		
+		/*
+		 * Alice 2 1 2 3 4 5 true/false (0/1) 
+		 * Bob 2 1 2 3 4 5 true/false (0/1)
+		 * ...
+		 * Alice Bob
+		 * Bob Eve
+		 */
 	}
 }
