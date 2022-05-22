@@ -72,7 +72,7 @@ public class ScheduleCSPDemo {
 		
 		 
 		
-		//solution.ifPresent(x -> (new TableList()).printResults(String.valueOf(x)));
+		solution.ifPresent(x -> (new TableList()).printResults(String.valueOf(x)));
 
 //		solution.ifPresent(System.out::println);
 //		solution.ifPresent(System.out::println);

@@ -1,7 +1,6 @@
 package br.ufs.dcomp.AIproject.csp;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -12,7 +11,6 @@ import org.paukov.combinatorics3.Generator;
 import aima.core.search.csp.CSP;
 import aima.core.search.csp.Domain;
 import br.ufs.dcomp.AIproject.IO.InputCSP;
-import br.ufs.dcomp.AIproject.constraints.AllMembersWorkConstraint;
 import br.ufs.dcomp.AIproject.constraints.AllowVaccinatedConstraint;
 import br.ufs.dcomp.AIproject.constraints.DependentMembersConstraint;
 import br.ufs.dcomp.AIproject.constraints.FreeWorkHoursConstraint;
@@ -54,13 +52,19 @@ public class ScheduleCSP extends CSP<TimeBox, WorkingGroup> {
 			addConstraint(new OfficeHourConstraint<TimeBox, WorkingGroup>(variable, startTime, endTime));
 		}
 
-		addConstraint(new AllMembersWorkConstraint<TimeBox, WorkingGroup>(variables, people));
-
 		for(StaffMember p1 : people) {
 			for(StaffMember p2 : p1.getDependencies()) {
 				addConstraint(new DependentMembersConstraint<TimeBox, WorkingGroup>(variables, p1, p2));	
 			}
 		}
 		addConstraint(new WorkLoadConstraint<TimeBox, WorkingGroup>(variables, people));
+		
+		/*
+		 * Alice 2 1 2 3 4 5 true/false (0/1) 
+		 * Bob 2 1 2 3 4 5 true/false (0/1)
+		 * ...
+		 * Alice Bob
+		 * Bob Eve
+		 */
 	}
 }
