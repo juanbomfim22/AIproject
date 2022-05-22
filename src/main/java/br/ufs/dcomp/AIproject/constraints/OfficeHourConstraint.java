@@ -14,7 +14,6 @@ public class OfficeHourConstraint<VAR extends TimeBox, VAL extends WorkingGroup>
 	private Integer startTime;
 	private Integer endTime;
 
-	// membro1 depende de membro2
 	public OfficeHourConstraint(VAR variable, Integer startTime, Integer endTime) {
 		this.scope = Arrays.asList(variable);
 		this.startTime = startTime;
