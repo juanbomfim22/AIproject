@@ -1,4 +1,4 @@
-# ScheduleCSP
+# Manual de funcionamento:
 
 <!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
 
@@ -6,8 +6,6 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/juanbomfim22/AIproject?style=for-the-badge) 
 
 ![image](https://user-images.githubusercontent.com/55420785/169701131-6bed8fca-784d-4630-b977-21820c46f414.png)
-
-### Manual de funcionamento:
 
 > Implementação do Problema de Agendamento no Escritório de Trabalho que utiliza a biblioteca [aima-java](https://github.com/aimacode/aima-java) para resolver o Problema de Satisfação de Restrições (PSR)
 ## Ajustes e melhorias
