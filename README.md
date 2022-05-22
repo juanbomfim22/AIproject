@@ -50,12 +50,12 @@ Como esse .txt será a entrada, deve seguir o seguinte padrão:
 
 Exemplo:
 
-1 10
-Alice | 2 | 1 2 3 4 5 | true
-Bob | 2 | 1 2 3 4 5 | true
-Charlie | 2 | 1 2 3 4 5 | true
-*
-Alice Bob
+ 1 10
+ Alice | 2 | 1 2 3 4 5 | true
+ Bob | 2 | 1 2 3 4 5 | true
+ Charlie | 2 | 1 2 3 4 5 | true
+ *
+ Alice Bob
 
 //
 Após isso basta alterar no arquivo <x> quais restrições você quer que sejam aplicadas no PSR 
