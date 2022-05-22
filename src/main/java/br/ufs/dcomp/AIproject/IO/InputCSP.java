@@ -129,7 +129,9 @@ public class InputCSP {
 				System.out.println("Type a valid response.");
 			}
 		}
-		this.addDependecies();
+		if(add) {
+			this.addDependecies();
+		}
 	}
 
 	private void addStaffMember(Integer staffNumber) {
