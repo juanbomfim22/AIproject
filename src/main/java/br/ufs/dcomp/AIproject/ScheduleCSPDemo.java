@@ -1,16 +1,13 @@
 package br.ufs.dcomp.AIproject;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import aima.core.search.csp.Assignment;
 import aima.core.search.csp.CSP;
 import aima.core.search.csp.CspListener;
 import aima.core.search.csp.CspSolver;
-import aima.core.search.csp.FlexibleBacktrackingSolver;
 import aima.core.search.csp.MinConflictsSolver;
 import br.ufs.dcomp.AIproject.csp.ScheduleCSP;
-import br.ufs.dcomp.AIproject.variables.StaffMember;
 import br.ufs.dcomp.AIproject.variables.TimeBox;
 import br.ufs.dcomp.AIproject.variables.WorkingGroup;
 
