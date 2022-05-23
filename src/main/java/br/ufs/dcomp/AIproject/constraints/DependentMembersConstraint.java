@@ -15,6 +15,7 @@ public class DependentMembersConstraint<VAR extends TimeBox, VAL extends Working
 	public StaffMember lastDependentMemberFound;
 	public StaffMember actualDependentMemberFound;
 	
+	//membro 1 depende do membro 2
 	public DependentMembersConstraint(List<VAR> scope, StaffMember member1, StaffMember member2) {	
 		this.scope = scope; 
 		this.member1 = member1;
