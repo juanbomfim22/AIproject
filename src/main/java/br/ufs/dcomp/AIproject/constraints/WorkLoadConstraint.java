@@ -35,6 +35,7 @@ public class WorkLoadConstraint<VAR extends TimeBox, VAL extends WorkingGroup> i
 		
 		for(VAR timeBox : getScope()) {
 			WorkingGroup value = assignment.getValue(timeBox);
+			if(value == null) return true;
 			for(StaffMember member: value.getMembers())
 				if(member != null)
 					map.put(member, map.get(member)+1);

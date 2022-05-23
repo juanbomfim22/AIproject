@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 import de.vandermeer.asciitable.AT_Row;
 import de.vandermeer.asciitable.AsciiTable;
+import de.vandermeer.asciithemes.TA_GridConfig;
+import de.vandermeer.asciithemes.TA_GridThemeOptions;
+import de.vandermeer.asciithemes.TA_GridThemes;
 
 public class TableList {
 	public void printResults(String data) {
@@ -27,7 +30,7 @@ public class TableList {
 		PMrow.add(0, "PM");
 
 		AsciiTable at = new AsciiTable();
-
+//		at.getContext().setGridTheme(TA_GridThemes.INSIDE_HORIZONTAL);
 		at.addRule();
 		at.addRow((Object[]) Arrays.asList("", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12")
 				.toArray(String[]::new));

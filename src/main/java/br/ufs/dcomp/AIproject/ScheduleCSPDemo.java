@@ -1,7 +1,6 @@
 package br.ufs.dcomp.AIproject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,8 +59,8 @@ public class ScheduleCSPDemo {
 		Optional<Assignment<TimeBox, WorkingGroup>> solution;
 
 		solver = new MinConflictsSolver<>(100000000);
-//		solver = new FlexibleBacktrackingSolver<TimeBox, StaffMember>().setAll();
-
+//		solver = new FlexibleBacktrackingSolver<TimeBox, WorkingGroup>().setAll();
+		
 		solver.addCspListener(stepCounter);
 
 		stepCounter.reset();

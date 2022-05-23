@@ -1,6 +1,5 @@
 package br.ufs.dcomp.AIproject.csp;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -37,6 +36,11 @@ public class ScheduleCSP extends CSP<TimeBox, WorkingGroup> {
 	public static final List<WorkingGroup> groups = Generator.subset(people).simple().stream()
 			.map(x -> new WorkingGroup(x)).collect(Collectors.toList());
 
+	/*
+	 * Alice, Bob, ...
+	 * Alice Bob, Alice Charlie, ...
+	 * Alice Bob Charlie, ...
+	 */
 	public ScheduleCSP() {
 		super(variables);
 

@@ -1,15 +1,12 @@
 package br.ufs.dcomp.AIproject.constraints;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import aima.core.search.csp.Assignment;
 import aima.core.search.csp.Constraint;
-import aima.core.search.csp.Domain;
 import br.ufs.dcomp.AIproject.variables.StaffMember;
 import br.ufs.dcomp.AIproject.variables.TimeBox;
-import br.ufs.dcomp.AIproject.variables.WorkingGroup;
+import br.ufs.dcomp.AIproject.variables.WorkingGroup; 
 
 public class DependentMembersConstraint<VAR extends TimeBox, VAL extends WorkingGroup> implements Constraint<VAR, VAL> {
 	private List<VAR> scope; 
@@ -35,6 +32,7 @@ public class DependentMembersConstraint<VAR extends TimeBox, VAL extends Working
 		
 		for(VAR timeBox: getScope()) {
 			VAL group = assignment.getValue(timeBox);
+			if(group == null) return true;
 			if (group.getMembers().contains(member1) || group.getMembers().contains(member2)) {
 				if(group.getMembers().contains(member1)) {
 					return false;
@@ -47,7 +45,7 @@ public class DependentMembersConstraint<VAR extends TimeBox, VAL extends Working
 
 		for(VAR timeBox : getScope()) { 
 			VAL group = assignment.getValue(timeBox);
-
+			if(group == null) return true;
 			if(group.getMembers().isEmpty()) continue; 
 			
 			if (group.getMembers().contains(member1) && group.getMembers().contains(member2)) {
