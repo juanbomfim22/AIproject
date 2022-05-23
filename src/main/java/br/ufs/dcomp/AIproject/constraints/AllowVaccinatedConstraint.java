@@ -13,9 +13,6 @@ import br.ufs.dcomp.AIproject.variables.WorkingGroup;
 public class AllowVaccinatedConstraint<VAR extends TimeBox, VAL extends WorkingGroup> implements Constraint<VAR, VAL> {
 	private List<VAR> scope;
 
-	// VAL é uma lista de StaffMembers
-
-	// membro1 depende de membro2
 	public AllowVaccinatedConstraint(VAR timeBox) {
 		this.scope = Arrays.asList(timeBox);
 	}
