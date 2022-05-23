@@ -5,55 +5,64 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/juanbomfim22/AIproject?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/juanbomfim22/AIproject?style=for-the-badge) 
 
-![image](https://user-images.githubusercontent.com/55420785/169701131-6bed8fca-784d-4630-b977-21820c46f414.png)
-
+![image](https://user-images.githubusercontent.com/55420785/169721670-1605a36f-4ca2-4e5b-8adc-b074f6680659.png)
 > Implementação do Problema de Agendamento no Escritório de Trabalho que utiliza a biblioteca [aima-java](https://github.com/aimacode/aima-java) para resolver o Problema de Satisfação de Restrições (PSR)
 > 
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:  
 * Você instalou a versão mais recente do Java SDK;  
-* Você tem baixou o Eclipse IDE;  
+* Você baixou o Eclipse IDE;  
 * Você leu todo esse manual.  
 
 ## 🚀 Instalando AIproject
 
-Para instalar o Aiproject, siga estas etapas:  
-Todos SOs:  
-Basta abrir o Eclipse IDE e fazer o clone desse repositório, outra opção é abrir o projeto já clonado.  
-OBS: todas dependencias já estão instaladas dentro do repositório (maven).  
+Para instalar o AIproject, siga estas etapas (todos SOs):  
+1. Fazer o clone do repositório na pasta desejada  
+2. Siga as etapas do guia [Rodando no Eclipse IDE](https://github.com/juanbomfim22/AIproject/wiki/Rodando-com-Eclipse-IDE)
 
 ## ☕ Usando AIproject
 
 Para usar AIproject, siga estas etapas:  
   
-Entre na pasta do projeto e abra o .txt  
-Como esse .txt será a entrada, deve seguir o seguinte padrão:  
+1. Entre na pasta do projeto e abra o arquivo `input.txt`.  
+2. Edite os dados de entrada nesse arquivo, respeitando o seguinte padrão:  
 
-<hora de início do experiente> < hora de fim do expediente>  
-<nome do funcionário 1> | <horas requeridas do funcionário> | <horários que o funcionário está livre> | <está vacinado ou não>  
-.  
-.  
-.  
-<nome do funcionário n> | <horas requeridas do funcionário> | <horários que o funcionário está livre> | <está vacinado ou não>  
+ ```
+<nome do membro 1> | <horas requeridas de 1> | <horários livres de 1> | <se 1 está vacinado `true`, senão `false`>  
+<nome do membro 2> | <horas requeridas de 2> | <horários livres de 2> | <se 2 está vacinado `true`, senão `false`>  
+...
+<nome do membro n> | <horas requeridas de n> | <horários livres de n> | <se n está vacinado `true`, senão `false`>  
 *  
 <nome do funcionário que precisa que outro termine seu turno> <nome do funcionário a ser esperado que o turno acabe>  
-  
-Exemplo:  
-  
- 1 10  
- Alice | 2 | 1 2 3 4 5 | true    
- Bob | 2 | 1 2 3 4 5 | true    
- Charlie | 2 | 1 2 3 4 5 | true    
- *  
- Alice Bob  
+```  
+
+Exemplo da página 4 da publicação [The Office Scheduling Problem](https://easychair.org/publications/preprint_open/7krz) com restrições adicionais:  
+```  
+4 21
+Alice | 2 | 4 13 19 21 22 | true
+Bob | 3 | 6 9 10 14 15 21 | true
+Charlie| 1 | 5 8 10 13 14 21 22 23 | false
+David | 2 | 1 3 4 5 6 7 19 23 | false
+Eve |4 | 2 4 7 10 11 13 14 15 18 21 | false
+*
+Alice Bob
+```
  
-Após isso basta alterar no arquivo <x> quais restrições você quer que sejam aplicadas no PSR  
-E por fim clicar em Run, o resultado será apresentado no terminal.  
+Por padrão, as seguintes cinco restrições foram implementadas e ativadas:
+1. `AllowVaccinatedConstraint`: Os membros vacionados podem trabalhar no mesmo horário que outros.
+2. `DependentMembersConstraint`: O membro A só pode trabalhar após que B concluir todas as suas horas.
+3. `FreeWorkHoursConstraint`: Os membros devem trabalhar nas horas que estão livres.
+4. `OfficeHourConstraint`: Os membros devem trabalhar dentre o horário de funcionamento do escritório.
+5. `WorkLoadConstraint`: Os membros devem trabalhar exatamente a quantidade de horas informada.
+
+Caso deseje alterar, basta comentar e descomentar as restrições de interesse na classe `ScheduleCSP`
+
+Para executar, após configurado o projeto no Eclipse, clique em Run (botão verde na barra superior) e o resultado será apresentado no console.
 
 ## 🤝 Colaboradores
 
-Agradecemos às seguintes pessoas que contribuíram para este projeto:
+As seguintes pessoas contribuíram para este projeto:
 
 <table>
   <tr>
